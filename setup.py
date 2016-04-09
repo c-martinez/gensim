@@ -106,6 +106,7 @@ def readfile(fname):
     return io.open(path, encoding='utf8').read()
 
 model_dir = os.path.join(os.path.dirname(__file__), 'gensim', 'models')
+gensim_dir = os.path.join(os.path.dirname(__file__), 'gensim')
 
 cmdclass = {'build_ext': custom_build_ext}
 
@@ -126,7 +127,7 @@ setup(
             include_dirs=[model_dir]),
         Extension('gensim.models.doc2vec_inner',
             sources=['./gensim/models/doc2vec_inner.c'],
-            include_dirs=[model_dir]),
+            include_dirs=[model_dir])
     ],
     cmdclass=cmdclass,
     packages=find_packages(),
@@ -142,7 +143,6 @@ setup(
         'Hierarchical Dirichlet Process, HDP, Random Projections, '
         'TFIDF, word2vec',
 
-    license='LGPL',
     platforms='any',
 
     zip_safe=False,
@@ -151,10 +151,13 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
+        'License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Text Processing :: Linguistic',
@@ -173,6 +176,7 @@ setup(
 
     extras_require={
         'distributed': ['Pyro4 >= 4.27'],
+        'wmd': ['pyemd >= 0.2.0'],
     },
 
     include_package_data=True,
